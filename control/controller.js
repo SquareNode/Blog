@@ -24,26 +24,27 @@ module.exports.savePost = async function(req,res,next) {
 	
 	try {
 		await model.savePost(req);
+	
+		
+		let data1 = await model.getData();
+		let username = req.query.username !== undefined ? req.query.username: null;
+		
+		if(username) {
+			res.render('home', { 
+				data: data1,
+				login: true,
+				name: username,
+				viewingMyPosts: false
+			});
+		}
+		else {
+			res.render('home', {
+				data: data1,
+				login: null
+			});
+		}
 	}catch(err){
 		next(err);
-	}
-	
-	let data1 = await model.getData();
-	let username = req.query.username !== undefined ? req.query.username: null;
-	
-	if(username) {
-		res.render('home', { 
-			data: data1,
-			login: true,
-			name: username,
-			viewingMyPosts: false
-		});
-	}
-	else {
-		res.render('home', {
-			data: data1,
-			login: null
-		});
 	}
 	
 }
@@ -54,21 +55,26 @@ module.exports.login = function (req,res,next) {
 
 module.exports.checkLogin = async function (req,res,next) {
 	
-	const username = await user.checkUser(req.body.username, req.body.password);
-	
-	if(username) {
-		let data1 = await model.getData()
+	try {
+		const username = await user.checkUser(req.body.username, req.body.password);
 		
-		res.render('home', {
-			data: data1,
-			login: true,
-			name: username,
-			viewingMyPosts: false
-		});
+		if(username) {
+			let data1 = await model.getData()
+			
+			res.render('home', {
+				data: data1,
+				login: true,
+				name: username,
+				viewingMyPosts: false
+			});
+			
+		}
+		else
+			res.send('failed login');
 		
+	} catch(err) {
+		next(err);
 	}
-	else
-		res.send('failed login');
 	
 }
 
