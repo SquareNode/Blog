@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Blogpost - <%= title %></title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="container-fluid">
+		
+			<div id="row">
+				<h1><%= title %></h1>
+				<h5>author: <%= author %></h5>
+				<h5>date: <%= postDate %></h5>
+				<p><%= text %></p>
+				
+				<% if(username) {%> 
+					<form method="post" action="/viewAllPosts">
+						<input type="text" name="username" hidden value="<%= username %>">
+						<button type="submit" class="btn-lg btn-link">Home</button>
+					</form>	
+				<% } else { %>
+					
+					<form method="post" action="/">
+						<button type="submit" class="btn-lg btn-link">Home</button>
+					</form>
+
+					
+				<% } %>
+			</div>
+		</div>
+	</body>
+</html>
