@@ -12,7 +12,9 @@
 					<form action="user" method="post">
 						<fieldset class="form-group">
 							<legend>Login</legend>
-							
+								<% if(errMsg) { %>
+									<p><%= errMsg %></p>
+								<% } %>
 								<div class="form-group">
 									<label for="username">Username<label>
 									<input name="username" class="form-control" type="text" maxlength="20">

@@ -25,15 +25,15 @@ let Blog = mongoose.Schema({
 	}
 });
 
-const bmodel = mongoose.model('Blog', Blog);
+const blogModel = mongoose.model('Blog', Blog);
 
-module.exports.model = bmodel;
+module.exports.model = blogModel;
 
 module.exports.getData = async function () {
 	
 	const query = {};
 
-	const search = await bmodel.find(query).exec();
+	const search = await blogModel.find(query).exec();
 	
 	return search;
 	
@@ -42,7 +42,7 @@ module.exports.getData = async function () {
 module.exports.savePost = async function (req) {
 	
 	
-	let newData = new bmodel({
+	let newData = new blogModel({
 		_id: new mongoose.Types.ObjectId(),
 		date: Date(),
 		title: req.query.title,
@@ -60,7 +60,7 @@ module.exports.savePost = async function (req) {
 
 module.exports.getUserPosts = async function (query) {
 
-	const search = await bmodel.find(query).exec();
+	const search = await blogModel.find(query).exec();
 	
 	//debug
 	//console.log(search);

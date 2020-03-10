@@ -50,7 +50,9 @@ module.exports.savePost = async function(req,res,next) {
 }
 
 module.exports.login = function (req,res,next) {
-	res.render('login');
+	res.render('login', {
+		errMsg: null
+	});
 }
 
 module.exports.checkLogin = async function (req,res,next) {
@@ -69,8 +71,16 @@ module.exports.checkLogin = async function (req,res,next) {
 			});
 			
 		}
-		else
-			res.send('failed login');
+		else {
+			//login fails
+			
+			res.render('login', {
+				errMsg: 'invalid username or password, try again'
+			});
+			
+		}
+			
+		
 		
 	} catch(err) {
 		next(err);
