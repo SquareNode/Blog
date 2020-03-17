@@ -17,6 +17,8 @@ const router = require('./routes/routes');
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
+app.use(express.static('public'));
+
 app.use('/', router);
 app.use('/create', router);
 app.use('/new', router);

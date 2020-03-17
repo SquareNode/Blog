@@ -12,22 +12,25 @@
 				<div class="col-9">
 					<h1 id="top">Blogposts</h1>
 					<hr>
-					<% for(const x of data) {%>
-						<h1><%= x.title%></h1>
-						<p><%= x.text %></p> <!--slice the text -->
-						<form method="post" action="/blogPost">
-							
-							<% if(login !== null) { %>
-						
-							<input type="text" name="username" hidden value="<%= name %>">
-							
-							<% }%>
-							<input type="text" name="id" hidden value="<%= x._id %>">
-							<button type="submit" class="btn-sm btn-link">continue reading</button>
-						</form>
-						
-					<% }%>
-					<hr>
+					<button id="reorder"></button>
+					<div id="cnt">
+						<% for(const x of data) {%>
+							<div class="post">
+								<h1><%= x.title%></h1>
+								<p><%= x.text %></p> <!--slice the text -->
+								<form method="post" action="/blogPost">
+									
+									<% if(login !== null) { %>
+								
+									<input type="text" name="username" hidden value="<%= name %>">
+									
+									<% }%>
+									<input type="text" name="id" hidden value="<%= x._id %>">
+									<button type="submit" class="btn-sm btn-link">continue reading</button>
+								</form>
+							</div>
+						<% }%>
+					</div>
 				
 				</div>
 				
@@ -85,5 +88,6 @@
 			</div>
 			<a href="#top" style="position:fixed; bottom: 0; right: 0"><button class="btn-lg btn-link">TOP</button></a>
 		</div>
+		<script src="home.js"></script>
 	</body>
 </html>
