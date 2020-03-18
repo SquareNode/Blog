@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<title>Login</title>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="login.css" type="text/css">
 	</head>
 	<body>
 		<div class="container">
@@ -13,7 +14,7 @@
 						<fieldset class="form-group">
 							<legend>Login</legend>
 								<% if(errMsg) { %>
-									<p><%= errMsg %></p>
+									<p id="error"><%= errMsg %></p>
 								<% } %>
 								<div class="form-group">
 									<label for="username">Username<label>
